@@ -1,19 +1,16 @@
 package Ejercicios7_8_9;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class Parte9 {
-    // InputStream, PrintStream, excepciones, un HashMap y un ArrayList, LinkedList o array.
 
     public static void main(String[] args) {
         String archivoInicial = "D:/Programacion/CursoIniciacion/JavaBasico/Ejercicio9_inicial.txt";
         String archivoFinal = "D:/Programacion/CursoIniciacion/JavaBasico/Ejercicio9_Final.txt";
-
 
         System.out.println("Hola! Estos son los productos que tenemos:");
 
@@ -21,25 +18,9 @@ public class Parte9 {
         HashMap<String, Integer> objetos = rellenarMapa(contenido);
 
         List<String> carrito = rellenarCarrito(objetos);
-
         Integer precioFinal = calcularPrecio(objetos, carrito);
 
         escribirArchivo(carrito, precioFinal, archivoFinal);
-
-
-
-    }
-
-    private static Integer calcularPrecio(HashMap<String, Integer> objetos, List<String> carrito){
-        Integer precioTotal = 0;
-        for(String elemento : carrito){
-            if(objetos.containsKey(elemento)){
-                precioTotal += objetos.get(elemento);
-            }
-        }
-        System.out.println("Este es el precio final: " + precioTotal);
-
-        return precioTotal;
     }
 
     public static String leerArchivo(String archivoInicial) {
@@ -77,8 +58,10 @@ public class Parte9 {
     }
 
     private static HashMap<String, Integer> rellenarMapa(String contenido) {
+        //creo un array con los elementos del archivo separados por enters.
         String contenidoArray[] = contenido.split("\r\n");
 
+        //creo un mapa y lo relleno con los elementos del array anterior los cuales separo el contenido por espacios, lo que hay antes del espacio será la clave y lo de después del espacio el valor.
         HashMap<String, Integer> listaObjetos = new HashMap<>();
         for(String linea : contenidoArray){
             String objeto[] = linea.split(" ");
@@ -92,6 +75,7 @@ public class Parte9 {
         Scanner scanner = new Scanner(System.in);
         String input = "";
 
+        //Añado a una nueva lista todos los elementos que quiero comprar.
         System.out.println("Escribe el nombre de lo que quieres comprar:");
         do{
             input = scanner.nextLine().toLowerCase();
@@ -105,4 +89,27 @@ public class Parte9 {
         } while (!input.equalsIgnoreCase("n"));
         return carrito;
     }
+
+    private static Integer calcularPrecio(HashMap<String, Integer> objetos, List<String> carrito){
+        Integer precioTotal = 0;
+
+        //Compruebo los elementos que he añadido al carrito con los elementos del mapa original para conseguir el precio de cada elemento y sumarlos.
+        for(String elemento : carrito){
+            if(objetos.containsKey(elemento)){
+                precioTotal += objetos.get(elemento);
+            }
+        }
+        System.out.println("Este es el precio final: " + precioTotal);
+        System.out.println(("Comprueba tu ticket de compra en tus archivos"));
+
+        return precioTotal;
+    }
+
+    /* Este es el contenido del archivo inicial:
+        Espada 20
+        Escudo 12
+        Bomba 6
+        Arco 18
+        Flecha 3
+    */
 }
