@@ -11,10 +11,12 @@ public class Parte3y4 {
         listaCompra.add("pollo");
         listaCompra.add("cereales");
 
+        System.out.println("Lista inicial: " + listaCompra);
+
         listaCompra.remove(2);
         listaCompra.remove(1);
 
-        System.out.println(listaCompra);
+        System.out.println("ListaCompra");
     }
 }
 /*

@@ -7,8 +7,8 @@ import java.io.PrintStream;
 public class Parte8 {
 
     public static void main(String[] args) {
-        String fileIn = "C:/Users/abelr/Desktop/prueba.txt";
-        String fileOut = "/C:/Users/abelr/Desktop/prueba2.txt";
+        String fileIn = "C:/Users/ione/Desktop/prueba.txt";
+        String fileOut = "/C:/Users/ione/Desktop/prueba2.txt";
         copiarArchivo(fileIn, fileOut);
     }
 
@@ -19,7 +19,6 @@ public class Parte8 {
 
             PrintStream info = new PrintStream(fileOut);
             info.write(datos);
-
 
         } catch (Exception e) {
             System.out.println(("No se ha podido realizar la operación " + e.getMessage()));
